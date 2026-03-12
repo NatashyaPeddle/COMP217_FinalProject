@@ -1,23 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "AEnvironmentActor.h" 
+#include "COMP217FinalProject.h"
+#include "Modules/ModuleManager.h"
 
-// Sets default values 
-AEnvironmentActor::AEnvironmentActor() 
-{ 
-	// Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it. 
-	PrimaryActorTick.bCanEverTick = true; 
-} 
-
-// Called when the game starts or when spawned 
-void AEnvironmentActor::BeginPlay() 
-{ 
-	Super::BeginPlay(); 
-} 
-
-// Called every frame 
-
-void AEnvironmentActor::Tick(float DeltaTime) 
-{ 
-	Super::Tick(DeltaTime); 
-}
+IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, COMP217FinalProject, "COMP217FinalProject");
