@@ -7,13 +7,13 @@
 #include "AEnvironmentActor.generated.h"
 
 UCLASS()
-class COMP217FINALPROJECT_API AAEnvironmentActor : public AActor
+class COMP217FINALPROJECT_API AEnvironmentActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AAEnvironmentActor();
+	AEnvironmentActor();
 
 protected:
 	// Called when the game starts or when spawned
