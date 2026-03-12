@@ -1,10 +1,13 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "AEnvironmentActor.generated.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/PointLightComponent.h"
+
 
 UCLASS()
 class COMP217FINALPROJECT_API AEnvironmentActor : public AActor
@@ -22,5 +25,36 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
+	
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* Root;
+	
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* EnvironmentMesh;
 
+	UPROPERTY(VisibleAnywhere)
+	UPointLightComponent* EnvironmentLight;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector ActorLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FRotator ActorRotation;
+	
+	UPROPERTY()
+	UMaterialInstanceDynamic* DynamicMaterial;
+	
+	void SetActorLocationCustom(FVector NewLocation);
+	FVector GetActorLocationCustom() const;
+
+	void SetActorRotationCustom(FRotator NewRotation);
+	FRotator GetActorRotationCustom() const;
+	
+	
+	///TIMER==========
+	FTimerHandle EnvironmentTimer;
+
+	///day/Night cycle? ===========
+	void UpdateEnvironmentTimeCycle();
 };
