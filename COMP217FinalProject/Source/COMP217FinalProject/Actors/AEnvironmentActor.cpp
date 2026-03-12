@@ -21,7 +21,7 @@ AEnvironmentActor::AEnvironmentActor()
 	EnvironmentLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("EnvironmentLight"));
 	EnvironmentLight->SetupAttachment(Root);
 	
-	
+	EnvironmentLight->Intensity = BaseLightIntensity;
 }
 
 // Called when the game starts or when spawned
@@ -38,7 +38,8 @@ void AEnvironmentActor::BeginPlay()
 	///LIGHT =========================================================
 	if (EnvironmentLight)
 	{
-		
+		EnvironmentLight->SetIntensity(BaseLightIntensity);
+		EnvironmentLight->SetLightColor(FLinearColor::White);
 	}
 	
 	///World system behavior ============================================

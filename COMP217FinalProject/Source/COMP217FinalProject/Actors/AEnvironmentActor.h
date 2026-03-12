@@ -27,14 +27,22 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Environment")
 	USceneComponent* Root;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Environment")
 	UStaticMeshComponent* EnvironmentMesh;
+	
+	///LIGHT ==========
+	
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Environment")
 	UPointLightComponent* EnvironmentLight;
+	
+	UPROPERTY(EditAnywhere, Category = "Lights")
+	float BaseLightIntensity = 1000.f;
+	
+	///LOCATION ===============
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector ActorLocation;
