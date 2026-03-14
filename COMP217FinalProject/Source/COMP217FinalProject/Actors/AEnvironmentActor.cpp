@@ -53,13 +53,18 @@ void AEnvironmentActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
+	RunningTime += DeltaTime;
+	
+	//Rotation
+	FRotator CurrentRotation = GetActorRotation();
+	CurrentRotation.Yaw += RotationSpeed * DeltaTime;
+	SetActorRotation(CurrentRotation);
 	
 	///LIGHT ====================================
-	// float Intensity =
-	// EnvironmentLight->SetIntensity(Intensity);
-
+	float Alpha = (FMath::Sin(RunningTime * LightAnimationSpeed) + 1.0f) / 2.0f;
+	float Intensity = FMath::Lerp(BaseLightIntensity, MaxLightIntensity, Alpha);
+	EnvironmentLight->SetIntensity(Intensity);
 }
-
 
 
 
