@@ -1,0 +1,24 @@
+# Visual Studio files
+.vs/
+*.sln
+*.vcxproj*
+*.user
+*.opendb
+*.VC.db
+*.obj
+*.tlog
+*.suo
+*.json
+*.vsidx
+*.db
+*.log
+*.ilk
+
+# Build output
+Debug/
+Release/
+x64/
+
+# Executables
+*.exe
+*.pdb
