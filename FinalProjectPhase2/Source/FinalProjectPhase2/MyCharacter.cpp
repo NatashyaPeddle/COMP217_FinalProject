@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "MyCharacter.h"
 
 #include "Kismet/GameplayStatics.h"
@@ -8,10 +6,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
-// Sets default values
+// Constructor
 AMyCharacter::AMyCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
@@ -30,24 +27,19 @@ AMyCharacter::AMyCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
+
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
 
-// Called when the game starts or when spawned
+// BeginPlay
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
-	if (PC)
-	{
-		PC->Possess(this);
-	}
 }
 
-// Called every frame
+// Tick
 void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -55,7 +47,7 @@ void AMyCharacter::Tick(float DeltaTime)
 	Speed = GetVelocity().Size();
 }
 
-// Called to bind functionality to input
+// Input
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -74,6 +66,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	UE_LOG(LogTemp, Warning, TEXT("C++ INPUT ACTIVE ON: %s"), *GetName());
 }
 
+// Movement
 void AMyCharacter::MoveForward(float Value)
 {
 	if (Value != 0.0f)
@@ -106,11 +99,11 @@ void AMyCharacter::LookUp(float Value)
 	AddControllerPitchInput(Value);
 }
 
+// Jump
 void AMyCharacter::Jump()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Jump"))
+	UE_LOG(LogTemp, Warning, TEXT("Jump"));
 	Super::Jump();
-
 }
 
 void AMyCharacter::StopJumping()
@@ -118,17 +111,35 @@ void AMyCharacter::StopJumping()
 	Super::StopJumping();
 }
 
+// Attack
 void AMyCharacter::Attack()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Attack fired"));
-	
-	FVector Start = Camera->GetComponentLocation();
-	FVector Forward = Camera->GetForwardVector();
-	FVector End = Start + (Forward * 500.f);
 
-	FHitResult Hit;
+	FVector Start = GetMesh()->GetSocketLocation("hand_rSocket");
+
+	// 1. Trace from camera to find where player is aiming
+	FVector CameraStart = Camera->GetComponentLocation();
+	FVector CameraForward = Camera->GetForwardVector();
+	FVector CameraEnd = CameraStart + (CameraForward * 2000.f);
+
+	FHitResult CameraHit;
 	FCollisionQueryParams Params;
 	Params.AddIgnoredActor(this);
+
+	GetWorld()->LineTraceSingleByChannel(
+		CameraHit,
+		CameraStart,
+		CameraEnd,
+		ECC_Visibility,
+		Params
+	);
+
+	FVector TargetPoint = CameraHit.bBlockingHit ? CameraHit.ImpactPoint : CameraEnd;
+	FVector Direction = (TargetPoint - Start).GetSafeNormal();
+	FVector End = Start + Direction * 1000.f;
+
+	FHitResult Hit;
 
 	bool bHit = GetWorld()->LineTraceSingleByChannel(
 		Hit,
@@ -143,7 +154,7 @@ void AMyCharacter::Attack()
 	if (bHit && Hit.GetActor())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Hit: %s"), *Hit.GetActor()->GetName());
-		
+
 		UGameplayStatics::ApplyDamage(
 			Hit.GetActor(),
 			25.f,
