@@ -2,7 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "MyCharacter.generated.h"
+
+class UCameraComponent;
+class USpringArmComponent;
+class UInputAction;
 
 UCLASS()
 class FINALPROJECTPHASE2_API AMyCharacter : public ACharacter
@@ -14,36 +19,65 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	bool bIsPaused = false;
 
 public:	
 	virtual void Tick(float DeltaTime) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Movement functions
-	void MoveForward(float Value);
-	void MoveRight(float Value);
-	
-	void Turn(float Value);
-	void LookUp(float Value);
+	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
 	
 	// Jump
-	void Jump();
-	void StopJumping();
+	void Jump(const FInputActionValue& Value);
+	void JumpStop(const FInputActionValue& Value);
 	
 	// Attack
-	void Attack();
+	void Attack(const FInputActionValue& Value);
+	
+	// Pause
+	void Pause(const FInputActionValue& Value);
 	
 	// Camera
 	UPROPERTY(VisibleAnywhere)
-	class USpringArmComponent* SpringArm;
+	USpringArmComponent* SpringArm;
 	
 	UPROPERTY(VisibleAnywhere)
-	class UCameraComponent* Camera;
+	UCameraComponent* Camera;
 	
 	// Animation
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	float Speed;
+	
+	// Health
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Health;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxHealth;
+	
+	UFUNCTION(BlueprintCallable)
+	float GetHealthPercent() const;
+	
+	void AddHealth(float Amount);
 
 	UFUNCTION(BlueprintCallable)
 	float GetSpeed() const { return Speed; }
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* IA_Move;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* IA_Jump;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* IA_Look;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* IA_Pause;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
+	UInputAction* IA_Attack;
 };
