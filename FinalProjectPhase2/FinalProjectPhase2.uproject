@@ -28,6 +28,10 @@
 		{
 			"Name": "GameplayCameras",
 			"Enabled": false
+		},
+		{
+			"Name": "ProceduralVegetationEditor",
+			"Enabled": true
 		}
 	]
 }
