@@ -229,15 +229,15 @@ ACollectible::~ACollectible() {}
 // ********** End Class ACollectible ***************************************************************
 
 // ********** Begin Registration *******************************************************************
-struct Z_CompiledInDeferFile_FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics
+struct Z_CompiledInDeferFile_FID_Users_Elijah_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_ACollectible, ACollectible::StaticClass, TEXT("ACollectible"), &Z_Registration_Info_UClass_ACollectible, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACollectible), 1710726443U) },
 	};
-}; // Z_CompiledInDeferFile_FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics 
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_166634739{
+}; // Z_CompiledInDeferFile_FID_Users_Elijah_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics 
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Elijah_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_166634739{
 	TEXT("/Script/FinalProjectPhase2"),
-	Z_CompiledInDeferFile_FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_Users_Elijah_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Elijah_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h__Script_FinalProjectPhase2_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0,
 };
