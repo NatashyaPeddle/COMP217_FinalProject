@@ -1,3 +1,2 @@
-2026/04/23-15:30:11.817 71dc Reusing MANIFEST C:\Users\super\OneDrive\Documents\GitHub\COMP217_FinalProject\FinalProjectPhase2\Saved\webcache_6613\Default\Local Storage\leveldb/MANIFEST-000001
-2026/04/23-15:30:11.829 71dc Recovering log #3
-2026/04/23-15:30:11.835 71dc Reusing old log C:\Users\super\OneDrive\Documents\GitHub\COMP217_FinalProject\FinalProjectPhase2\Saved\webcache_6613\Default\Local Storage\leveldb/000003.log 
+2026/04/23-15:36:29.629 61ec Creating DB B:\CENTENNIAL_COLLEGE\2026\REPOSITORIES\COMP217_FinalProject\FinalProjectPhase2\Saved\webcache_6613\Default\Local Storage\leveldb since it was missing.
+2026/04/23-15:36:29.842 61ec Reusing MANIFEST B:\CENTENNIAL_COLLEGE\2026\REPOSITORIES\COMP217_FinalProject\FinalProjectPhase2\Saved\webcache_6613\Default\Local Storage\leveldb/MANIFEST-000001

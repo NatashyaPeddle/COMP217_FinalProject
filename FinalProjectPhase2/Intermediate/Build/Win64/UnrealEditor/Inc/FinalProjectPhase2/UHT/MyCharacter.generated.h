@@ -17,7 +17,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 // ********** Begin Class AMyCharacter *************************************************************
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetSpeed); \
 	DECLARE_FUNCTION(execCheckHealth); \
 	DECLARE_FUNCTION(execAddHealth); \
@@ -27,7 +27,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 struct Z_Construct_UClass_AMyCharacter_Statics;
 FINALPROJECTPHASE2_API UClass* Z_Construct_UClass_AMyCharacter_NoRegister();
 
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMyCharacter(); \
 	friend struct ::Z_Construct_UClass_AMyCharacter_Statics; \
@@ -38,7 +38,7 @@ public: \
 	DECLARE_SERIALIZER(AMyCharacter)
 
 
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	AMyCharacter(AMyCharacter&&) = delete; \
 	AMyCharacter(const AMyCharacter&) = delete; \
@@ -48,13 +48,13 @@ public: \
 	NO_API virtual ~AMyCharacter();
 
 
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_14_PROLOG
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_GENERATED_BODY \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_14_PROLOG
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_INCLASS_NO_PURE_DECLS \
-	FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_ENHANCED_CONSTRUCTORS \
+	FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_INCLASS_NO_PURE_DECLS \
+	FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -64,6 +64,6 @@ class AMyCharacter;
 // ********** End Class AMyCharacter ***************************************************************
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h
+#define CURRENT_FILE_ID FID_FinalProjectPhase2_Source_FinalProjectPhase2_MyCharacter_h
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

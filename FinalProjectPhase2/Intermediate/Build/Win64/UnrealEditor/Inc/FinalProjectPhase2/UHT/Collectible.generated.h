@@ -20,14 +20,14 @@ class UPrimitiveComponent;
 struct FHitResult;
 
 // ********** Begin Class ACollectible *************************************************************
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnOverlap);
 
 
 struct Z_Construct_UClass_ACollectible_Statics;
 FINALPROJECTPHASE2_API UClass* Z_Construct_UClass_ACollectible_NoRegister();
 
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACollectible(); \
 	friend struct ::Z_Construct_UClass_ACollectible_Statics; \
@@ -38,7 +38,7 @@ public: \
 	DECLARE_SERIALIZER(ACollectible)
 
 
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	ACollectible(ACollectible&&) = delete; \
 	ACollectible(const ACollectible&) = delete; \
@@ -48,13 +48,13 @@ public: \
 	NO_API virtual ~ACollectible();
 
 
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_9_PROLOG
-#define FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_GENERATED_BODY \
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_9_PROLOG
+#define FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_INCLASS_NO_PURE_DECLS \
-	FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_ENHANCED_CONSTRUCTORS \
+	FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_INCLASS_NO_PURE_DECLS \
+	FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -64,6 +64,6 @@ class ACollectible;
 // ********** End Class ACollectible ***************************************************************
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_super_OneDrive_Documents_GitHub_COMP217_FinalProject_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h
+#define CURRENT_FILE_ID FID_FinalProjectPhase2_Source_FinalProjectPhase2_Collectible_h
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
