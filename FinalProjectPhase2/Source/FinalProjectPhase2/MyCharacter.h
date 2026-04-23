@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "InputMappingContext.h"
 #include "MyCharacter.generated.h"
 
 class UCameraComponent;
@@ -31,8 +32,8 @@ public:
 	void Look(const FInputActionValue& Value);
 	
 	// Jump
-	void Jump(const FInputActionValue& Value);
-	void JumpStop(const FInputActionValue& Value);
+	void Jump();
+	void JumpStop();
 	
 	// Attack
 	void Attack(const FInputActionValue& Value);
@@ -80,4 +81,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input")
 	UInputAction* IA_Attack;
+
+	UPROPERTY(EditDefaultsOnly, Category="Input")
+	UInputMappingContext* IMC_Default;
+
+	virtual void PossessedBy(AController* NewController) override;
 };

@@ -17,3 +17,4 @@ class FINALPROJECTPHASE2_API AMyGameMode : public AGameModeBase
 public: 
 	AMyGameMode();
 };
+	

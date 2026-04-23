@@ -6,6 +6,10 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/PlayerController.h"
+#include "InputMappingContext.h"
 #include "InputActionValue.h"
 
 // Constructor
@@ -14,6 +18,7 @@ AMyCharacter::AMyCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(GetCapsuleComponent());
 	
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm);
@@ -29,17 +34,45 @@ AMyCharacter::AMyCharacter()
 	bUseControllerRotationRoll  = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	
-	AutoPossessPlayer = EAutoReceiveInput::Player0;
-	
+
 	Health = 100.0f;
 	MaxHealth = 100.0f;
 }
 
-// BeginPlay
-void AMyCharacter::BeginPlay()
+void AMyCharacter::PossessedBy(AController* NewController)
 {
-	Super::BeginPlay();
+	Super::PossessedBy(NewController);
+
+	APlayerController* PC = Cast<APlayerController>(NewController);
+	if (!PC)
+	{
+		UE_LOG(LogTemp, Error, TEXT("PossessedBy: No PlayerController"));
+		return;
+	}
+
+	ULocalPlayer* LP = PC->GetLocalPlayer();
+	if (!LP)
+	{
+		UE_LOG(LogTemp, Error, TEXT("PossessedBy: No LocalPlayer"));
+		return;
+	}
+
+	UEnhancedInputLocalPlayerSubsystem* Subsystem =
+		LP->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>();
+
+	if (!Subsystem)
+	{
+		UE_LOG(LogTemp, Error, TEXT("PossessedBy: No Enhanced Input Subsystem"));
+		return;
+	}
+
+	if (IMC_Default)
+	{
+		Subsystem->ClearAllMappings();
+		Subsystem->AddMappingContext(IMC_Default, 0);
+
+		UE_LOG(LogTemp, Warning, TEXT("IMC_Default successfully applied"));
+	}
 }
 
 // Tick
@@ -48,6 +81,7 @@ void AMyCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 	Speed = GetVelocity().Size();
+	
 }
 
 // Input
@@ -71,17 +105,19 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 void AMyCharacter::Move(const FInputActionValue& Value)
 {
 	if (bIsPaused) return;
-	
+
 	FVector2D MovementVector = Value.Get<FVector2D>();
-	
-	if (Controller == nullptr) return;
-	
+
+	UE_LOG(LogTemp, Warning, TEXT("MOVE RAW: %s"), *MovementVector.ToString());
+
+	if (!Controller) return;
+
 	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0, Rotation.Yaw, 0);
-	
+	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+
 	const FVector Forward = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	const FVector Right = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	
+	const FVector Right   = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
 	AddMovementInput(Forward, MovementVector.Y);
 	AddMovementInput(Right, MovementVector.X);
 }
@@ -93,20 +129,22 @@ void AMyCharacter::Look(const FInputActionValue& Value)
 	
 	FVector2D LookAxis = Value.Get<FVector2D>();
 	
+	UE_LOG(LogTemp, Warning, TEXT("Look Axis - X: %f, Y: %f"), LookAxis.X, LookAxis.Y);
+	
 	AddControllerYawInput(LookAxis.X);
 	
 	AddControllerPitchInput(LookAxis.Y);
 }
 
 // Jump
-void AMyCharacter::Jump(const FInputActionValue& Value)
+void AMyCharacter::Jump()
 {
 	if (bIsPaused) return;
 	
 	Super::Jump();
 }
 
-void AMyCharacter::JumpStop(const FInputActionValue& Value)
+void AMyCharacter::JumpStop()
 {
 	if (bIsPaused) return;
 	
