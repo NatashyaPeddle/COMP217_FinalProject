@@ -34,10 +34,11 @@ void ATrap::OnOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, U
 		
 		if (Player)
 		{
-			Player->AddHealth(25.0f);
+			Player->AddHealth(-5);
+			Player->CheckHealth();
 			if (GEngine)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, TEXT("Health +25"));
+				GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, TEXT("Health -5"));
 			}
 			
 			Destroy();

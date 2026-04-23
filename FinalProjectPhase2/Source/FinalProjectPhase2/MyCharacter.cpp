@@ -29,9 +29,9 @@ AMyCharacter::AMyCharacter()
 	SpringArm->bInheritRoll  = true;
 	
 	Camera->bUsePawnControlRotation = false;
-	bUseControllerRotationPitch = true;
-	bUseControllerRotationYaw   = true;
-	bUseControllerRotationRoll  = true;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw   = false;
+	bUseControllerRotationRoll  = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
@@ -248,15 +248,15 @@ void AMyCharacter::BeginPlay()
 
 void AMyCharacter::CheckHealth()
 {
-	
-	if (Health < 0.0f)
+	if (Health <= 0.0f)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Player Has Died"));
+		
+		if (APlayerController* PC = Cast<APlayerController>(GetController()))
+		{
+			UKismetSystemLibrary::QuitGame(GetWorld(), PC, EQuitPreference::Quit, false);
+		}
+		
 		Destroy();
-	}
-	
-	if (APlayerController* PC = Cast<APlayerController>(GetController()))
-	{
-		UKismetSystemLibrary::QuitGame(GetWorld(), PC, EQuitPreference::Quit, false);
 	}
 }

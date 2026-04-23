@@ -66,6 +66,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category ="Health")
 	void AddHealth(float Amount);
 	
+	UFUNCTION(BlueprintCallable, Category ="Health")
 	void CheckHealth();
 
 	UFUNCTION(BlueprintCallable)
