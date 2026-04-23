@@ -24,14 +24,14 @@ AMyCharacter::AMyCharacter()
 	Camera->SetupAttachment(SpringArm);
 	
 	SpringArm->bUsePawnControlRotation = true;
-	SpringArm->bInheritPitch = false;
+	SpringArm->bInheritPitch = true;
 	SpringArm->bInheritYaw   = true;
-	SpringArm->bInheritRoll  = false;
+	SpringArm->bInheritRoll  = true;
 	
 	Camera->bUsePawnControlRotation = false;
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw   = false;
-	bUseControllerRotationRoll  = false;
+	bUseControllerRotationPitch = true;
+	bUseControllerRotationYaw   = true;
+	bUseControllerRotationRoll  = true;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
@@ -50,6 +50,7 @@ void AMyCharacter::PossessedBy(AController* NewController)
 		return;
 	}
 
+	
 	ULocalPlayer* LP = PC->GetLocalPlayer();
 	if (!LP)
 	{
@@ -107,13 +108,14 @@ void AMyCharacter::Move(const FInputActionValue& Value)
 	if (bIsPaused) return;
 
 	FVector2D MovementVector = Value.Get<FVector2D>();
+	
 
 	UE_LOG(LogTemp, Warning, TEXT("MOVE RAW: %s"), *MovementVector.ToString());
 
 	if (!Controller) return;
 
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+	const FRotator CRotation = Controller->GetControlRotation();
+	const FRotator YawRotation(0.f, CRotation.Yaw, 0.f);
 
 	const FVector Forward = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector Right   = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
@@ -237,4 +239,24 @@ void AMyCharacter::AddHealth(float Amount)
 float AMyCharacter::GetHealthPercent() const
 {
 	return Health / MaxHealth;
+}
+
+void AMyCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void AMyCharacter::CheckHealth()
+{
+	
+	if (Health < 0.0f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player Has Died"));
+		Destroy();
+	}
+	
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		UKismetSystemLibrary::QuitGame(GetWorld(), PC, EQuitPreference::Quit, false);
+	}
 }

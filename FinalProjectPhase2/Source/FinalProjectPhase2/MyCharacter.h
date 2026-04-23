@@ -6,6 +6,7 @@
 #include "InputMappingContext.h"
 #include "MyCharacter.generated.h"
 
+
 class UCameraComponent;
 class USpringArmComponent;
 class UInputAction;
@@ -59,10 +60,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxHealth;
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category ="Health")
 	float GetHealthPercent() const;
 	
+	UFUNCTION(BlueprintCallable, Category ="Health")
 	void AddHealth(float Amount);
+	
+	void CheckHealth();
 
 	UFUNCTION(BlueprintCallable)
 	float GetSpeed() const { return Speed; }
