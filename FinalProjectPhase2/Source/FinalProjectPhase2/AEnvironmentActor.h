@@ -7,8 +7,10 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/PointLightComponent.h"
 #include "Components/SceneComponent.h"
-class UMaterialInstanceDynamic;
 #include "AEnvironmentActor.generated.h"
+
+//Forward Declaration
+class UMaterialInstanceDynamic;
 
 UCLASS()
 class FINALPROJECTPHASE2_API AEnvironmentActor : public AActor
@@ -29,12 +31,15 @@ public:
 	
 	///COMPONENT =============
 	
+	//Root Component
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USceneComponent* Root;
 	
+	//Static Mesh
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* EnvironmentMesh;
 	
+	//Point Light
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UPointLightComponent* EnvironmentLight;
 	
@@ -57,6 +62,7 @@ public:
 	
 	///TRANSFORM ===============
 	
+	//Store Position to Reset Oscillation
 	FVector DefaultLocation;
 	FRotator DefaultRotation;
 	
@@ -66,12 +72,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FRotator ActorRotation;
 	
+	//Rotation Speed
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Transform")
 	float RotationSpeed = 50.f;
 	
+	//Vertical Movement
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Transform")
 	float MovementSpeed = 50.f;
 	
+	//Sine-Wave Oscillation Speed
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Transform")
 	float OscillationSpeed = 2.f;
 	
@@ -83,20 +92,25 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material")
 	float GlowPower = 5.f;
 	
+	//Dynamic Material Instance
 	UPROPERTY()
 	UMaterialInstanceDynamic* DynamicMaterial;
 	
 	///TIMER==========
 	FTimerHandle EnvironmentTimer;
 	
+	//Tracks Time
 	float RunningTime;
 	
+	//Toggles Light On and Off
 	UFUNCTION(BlueprintCallable, Category = "Environment")
 	void ToggleLight();
 	
+	//Resets Object Position and Rotation
 	UFUNCTION(BlueprintCallable, Category = "Environment")
 	void ResetActorTransformation();
 	
+	//Setter and Getters
 	UFUNCTION(BlueprintCallable, Category = "Environment")
 	void SetActorLocationCustom(FVector NewLocation);
 	
@@ -112,6 +126,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Environment")
 	FTransform GetCurrentTransform() const;
 	
-	///day/Night cycle? ===========
+	//Handes Day/Night Switch Logic
 	void UpdateEnvironmentTimeCycle();
 };

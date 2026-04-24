@@ -7,26 +7,28 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "TimerManager.h"
 
-// Sets default values
+//Constructor
 AEnvironmentActor::AEnvironmentActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	//Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// Root
+	//Root
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
 
-	// Mesh
+	//Mesh
 	EnvironmentMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("EnvironmentMesh"));
 	EnvironmentMesh->SetupAttachment(Root);
 
-	// Light
+	//Light
 	EnvironmentLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("EnvironmentLight"));
 	EnvironmentLight->SetupAttachment(Root);
 	
+	//Set Light Intensity
 	EnvironmentLight->Intensity = BaseLightIntensity;
 	
+	//Initialize Time Tracker
 	RunningTime = 0.f;
 }
 
@@ -35,18 +37,21 @@ void AEnvironmentActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//Store Starting Transformation
 	DefaultLocation = GetActorLocation();
 	DefaultRotation = GetActorRotation();
 	
 	///DYNAMIC MATERIAL=============================================
 	if (EnvironmentMesh)
 	{
+		//Create Dynamic Material
 		DynamicMaterial = EnvironmentMesh->CreateAndSetMaterialInstanceDynamic(0);
 	}
 	
 	///LIGHT =========================================================
 	if (EnvironmentLight)
 	{
+		//Apply Light Settings
 		EnvironmentLight->SetIntensity(BaseLightIntensity);
 		EnvironmentLight->SetLightColor(LightColor);
 	}
@@ -62,6 +67,7 @@ void AEnvironmentActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
+	//Track Time
 	RunningTime += DeltaTime;
 	
 	//Rotation
